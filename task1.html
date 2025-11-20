@@ -1,48 +1,177 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task 1</title>
-</head>
-<body>
+<h1>1</h1>
+function RandomArray(size = 10) {
+    let arr = [];
+    for (let i = 0; i < size; i++) {
+        arr.push(Math.floor(Math.random() * 100));
+    }
+    return arr;
+}
+
+
+function PrintArr(arr) {
+    document.writeln("Массив: " + arr.join(" | ") + "<br>");
+}
+
+
+function PrintEven(arr) {
+    let evenArr = arr.filter(num => num % 2 === 0);
+    document.writeln("Четные элементы: " + evenArr.join(" | ") + "<br>");
+}
+
+
+function SumArray(arr) {
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++) {
+        sum += arr[i];
+    }
+    return sum;
+}
+
+
+function MaxElementManual(arr) {
+    let max = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+    }
+    return max;
+}
+
+
+function MinElementManual(arr) {
+    let min = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] < min) {
+            min = arr[i];
+        }
+    }
+    return min;
+}
+
+
+function AddElement(arr, index, value) {
+    arr.splice(index, 0, value);
+}
+
+
+function RemoveElement(arr, index) {
+    arr.splice(index, 1);
+}
+
+
+let myArr = RandomArray();
+PrintArr(myArr);
+PrintEven(myArr);
+document.writeln("Сумма элементов: " + SumArray(myArr) + "<br>");
+document.writeln("Максимальный элемент: " + MaxElementManual(myArr) + "<br>");
+document.writeln("Минимальный элемент: " + MinElementManual(myArr) + "<br>");
+
+
+AddElement(myArr, 3, 999);
+document.writeln("После добавления элемента:<br>");
+PrintArr(myArr);
+
+
+RemoveElement(myArr, 5);
+document.writeln("После удаления элемента:<br>");
+PrintArr(myArr); 
+
+<h1>2</h1>
+
+function RandomArray(size = 5) {
+    let arr = [];
+    for (let i = 0; i < size; i++) {
+        arr.push(Math.floor(Math.random() * 100));
+    }
+    return arr;
+}
+
+function PrintArr(arr) {
+    document.writeln("Массив: " + arr.join(" | ") + "<br>");
+}
+
+function MergeUnique(arr1, arr2){
+
+    let merged = arr1.concat(arr2);
+    let unique = [];
+     for (let i = 0; i < merged.length; i++) {
+        if(!unique.includes(merged[i])){
+            unique.push(merged[i]);
+        }
+     }
+     return unique;
+}
+
+function CommonElements(arr1, arr2){
     
-<h1 style= "font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; text-align: center; line-height: 1.6; color: #222980;"> Romeo and Juliet </h1>
-<h3 style="font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #818294; ">ACT 1</h3>
+    let common = [];
+     for (let i = 0; i < arr1.length; i++) {
+        if(arr2.includes(arr1[i])){
+            common.push(arr1[i]);
+        }
+     }
+     return common;
+}
 
-<h3 style="font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #818294; ">PROLOGUE</h3>
-<div style = "font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #202122;">
-Two households, both alike in dignity,<br>
-In fair Verona, where we lay our scene,<br>
-From ancient grudge break to new mutiny,<br>
-Where civil blood makes civil hands unclean.<br>
-From forth the fatal loins of these two foes<br>
-A pair of star-cross'd lovers take their life;<br>
-Whose misadventured piteous overthrows<br>
-Do with their death bury their parents' strife.<br>
-The fearful passage of their death-mark'd love,<br>
-And the continuance of their parents' rage,<br>
-Which, but their children's end, nought could remove,<br>
-Is now the two hours' traffic of our stage;<br>
-The which if you with patient ears attend,<br>
-What here shall miss, our toil shall strive to mend.<br>
-</div>
+function DiffElements(arr1, arr2){
+    
+    let diff = [];
+     for (let i = 0; i < arr1.length; i++) {
+        if(!arr2.includes(arr1[i])){
+            diff.push(arr1[i]);
+        }
+     }
+     return diff;
+}
 
-<h3 style="font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #818294; ">SCENE I. Verona. A public place.</h3>
+let arr1 = RandomArray();
+let arr2 = RandomArray();
 
-<small><div style = "font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; font-style: italic;">
-Enter SAMPSON and GREGORY, of the house of Capulet, armed with swords and bucklers
-</div></small>
+PrintArr(arr1, "Первый массив:");
+PrintArr(arr2, "Второй массив:");
 
-<h3 style="font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #818294; ">SAMPSON</h3>
+let merged = MergeUnique(arr1, arr2);
+PrintArr(merged, "массив, в котором собраны все элементы из двух массивов без повторений:");
 
-<div style = "font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #202122;">
-Gregory, o' my word, we'll not carry coals.
-</div>
-<h3 style="font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #818294; ">GREGORY</h3>
+let common = CommonElements(arr1, arr2);
+PrintArr(common, "массив, в котором собраны общие элементы без повторений:");
 
-<div style = "font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #202122;">
-No, for then we should be colliers.
-</div>
-</body>
-</html>
+let diff = DiffElements(arr1, arr2);
+PrintArr(diff, "массив, в котором собраны все элементы из первого массива, которых нет во втором массиве:");
+
+
+<h1>3</h1>
+
+
+let fruits = ["Apple", "banana", "Orange", "kiwi", "Mango"];
+fruits.sort(function(a, b) {
+    return a.toLowerCase().localeCompare(b.toLowerCase());
+});
+
+
+function PrintList(arr) {
+    document.write("<ul>");
+    for (let i = 0; i < arr.length; i++) {
+        document.write("<li>" + arr[i] + "</li>");
+    }
+    document.write("</ul>");
+}
+
+
+function FindFruit(arr, fruitName) {
+    fruitName = fruitName.toLowerCase(); 
+
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i].toLowerCase() === fruitName) {
+            return i; 
+        }
+    }
+    return -1; 
+}
+
+
+PrintList(fruits);
+
+document.write("<br>Индекс 'banana': " + FindFruit(fruits, "BaNaNa") + "<br>");
+document.write("Индекс 'peach': " + FindFruit(fruits, "Peach") + "<br>");
